@@ -1,5 +1,6 @@
 "use client";
 
+import "./page.css";
 import { useActionState } from "react";
 import createPost from "@/actions/post";
 
@@ -10,30 +11,46 @@ export default function Page() {
   });
 
   return (
-    <form action={action}>
-      <div>
-        <label>Mật khẩu</label>
+    <div className="container">
+      <form action={action} className="form">
+        <h2>Đăng nhập</h2>
+
+        <div>
+          <label>Mật khẩu</label>
+          <br />
+          <input type="password" name="pass" />
+          <br />
+          <span className="error">{state.error?.pass}</span>
+        </div>
+
         <br />
-        <input type="password" name="title" />
+
+        <div>
+          <label>Số điện thoại</label>
+          <br />
+          <input type="text" name="sdt" />
+          <br />
+          <span className="error">{state.error?.sdt}</span>
+        </div>
+
         <br />
-        {state.error?.title && state.error.title}
-      </div>
 
-      <br />
+        <button type="submit">Đăng nhập</button>
 
-      <div>
-        <label>Số điện thoại</label>
-        <br />
-        <input type="text" name="content" />
-        <br />
-        {state.error?.content && state.error.content}
-      </div>
-
-      <br />
-
-      <button>Đăng nhập</button>
-
-      <p>{state.message}</p>
-    </form>
+        {state.message && <p>{state.message}</p>}
+      </form>
+    </div>
   );
+  // useEffect(() => {
+  //   const getData = async() => {
+  //   const data = await getPosts();
+  //   console.log(data);
+  //   }
+  //   getData();
+  // },[])
+  // return (
+  //   <div>
+  //     <button onClick={clearCache}></button>
+  //   </div>
+  // );
 }
